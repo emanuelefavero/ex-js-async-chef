@@ -9,5 +9,8 @@
   "keywords": [],
   "author": "Emanuele Favero <emafaux89@gmail.com> (https://emanuelefavero.com/)",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "dayjs": "^1.11.23"
+  }
 }

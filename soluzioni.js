@@ -1,5 +1,7 @@
 /** @fileoverview Soluzione esercizio: "Il compleanno dello Chef". */
 
+import dayjs from 'dayjs';
+
 // Config
 const BASE_URL = 'https://dummyjson.com';
 const RESOURCES = Object.freeze({
@@ -7,6 +9,7 @@ const RESOURCES = Object.freeze({
   users: 'users',
 });
 const RECIPE_ID = 1;
+const DATE_FORMAT = 'DD/MM/YYYY';
 
 // Utils
 const url = (...args) => [BASE_URL, ...args].join('/');
@@ -36,8 +39,10 @@ const getChefBirthday = async id => {
 // Run
 const main = async () => {
   try {
-    const birthday = await getChefBirthday(RECIPE_ID);
-    console.log('Data di nascita dello chef:', birthday);
+    const birthDate = await getChefBirthday(RECIPE_ID);
+    const formattedDate = dayjs(birthDate).format(DATE_FORMAT);
+
+    console.log('Data di nascita dello chef:', formattedDate);
   } catch (error) {
     console.error('Errore:', error.message);
   }
