@@ -1,0 +1,10 @@
+@baseUrl = https://dummyjson.com
+@id = 1
+@userId = 166
+
+### GET Recipe by ID
+GET {{baseUrl}}/recipes/{{id}}
+
+### GET User by ID
+
+GET {{baseUrl}}/users/{{userId}}
