@@ -1,6 +1,6 @@
 # EX - Il compleanno dello Chef
 
-Esercizi di promises in JavaScript, dal mio corso web dev (specializzazione Frontend)
+Esercizi di async/await in JavaScript, dal mio corso web dev (specializzazione Frontend)
 
 ## Avvio
 
