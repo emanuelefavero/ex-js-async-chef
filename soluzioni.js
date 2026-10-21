@@ -7,19 +7,17 @@ const BASE_URL = 'https://dummyjson.com';
 
 // Exercise
 const getChefBirthday = async id => {
-  const recipeResponse = await fetch(`${BASE_URL}/recipes/${id}`);
-  const { userId } = await recipeResponse.json();
+  const recipeRes = await fetch(`${BASE_URL}/recipes/${id}`);
+  if (!recipeRes.ok) throw new Error(`Ricetta ${id}: HTTP ${recipeRes.status}`);
+  const { userId } = await recipeRes.json();
+  if (!userId) throw new Error(`Ricetta non trovata o senza chef ${id}`);
 
-  if (!userId) throw new Error('Chef non trovato nella ricetta');
+  const chefRes = await fetch(`${BASE_URL}/users/${userId}`);
+  if (!chefRes.ok) throw new Error(`Chef ${userId}: HTTP ${chefRes.status}`);
+  const { birthDate } = await chefRes.json();
+  if (!birthDate) throw new Error(`Chef non trovato/senza birthDate ${userId}`);
 
-  const chefResponse = await fetch(`${BASE_URL}/users/${userId}`);
-  const { birthDate } = await chefResponse.json();
-
-  if (!birthDate) throw new Error('Data di nascita dello chef non trovata');
-
-  const formattedDate = dayjs(birthDate).format('DD/MM/YYYY');
-
-  return formattedDate;
+  return dayjs(birthDate).format('DD/MM/YYYY');
 };
 
 // Run
